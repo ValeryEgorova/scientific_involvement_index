@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------
-# Project: Scientific Involvement Index
+# Project: Scientific Involvement Indincator
 # Organization: SFedU Future Skills Research Lab
 # Objective: Install packages needed for the analysis
 # Author: Valeria Egorova
@@ -13,7 +13,19 @@ required_packages <- c("tidyverse",
                        "haven",
                        "readxl",
                        "psych",
-                       "foreign")
+                       "foreign",
+                       "factoextra",
+                       "corrr",
+                       "ggcorrplot",
+                       "writexl",
+                       "car",
+                       "ggfortify",
+                       "mgcv",
+                       "erer",
+                       "caret",
+                       "e1071",
+                       "margins",
+                       "Hmisc")
 
 
 # Function to check and install packages

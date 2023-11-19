@@ -1,13 +1,14 @@
 #-------------------------------------------------------------------
-# Project: Scientific Involvement Index
+# Project: Scientific Involvement Indicator
 # Organization: SFedU Future Skills Research Lab
 # Objective: Prepare a dataset for the analysis
 # Author:  Valeria Egorova
-# Date: 10 Nov 2023
+# Date: 19 Nov 2023
 #-------------------------------------------------------------------
 
 # Read the script to uploaded necessary libraries
 source(file.path(rcodes, "0200_load_packages.R"))
+
 
 # Read files and delete differing variables
 data_general <- read_excel(file.path(inputData,"data_general.xlsx"))%>%
@@ -17,14 +18,17 @@ data_general <- read_excel(file.path(inputData,"data_general.xlsx"))%>%
          edu_f = as.numeric(edu_f))%>%
   select(-316)
 
+
 data_lyceum <- read_excel(file.path(inputData,"data_lyceum.xlsx"))%>%
   mutate(dataset = "lyceum", 
          grade = as.numeric(grade))%>%
   select(-c(2:5), -316)
 
+
 data_aesc <- read_excel(file.path(inputData,"data_aesc.xlsx"))%>%
   mutate(dataset = "aesc")%>%
   select(-c(2:5), -8)
+
 
 #Merging datasets in one
 data <- 
@@ -32,26 +36,35 @@ data <-
   bind_rows(data_lyceum)%>%
   bind_rows(data_aesc)
 
+
 #Creating vectors for reversed questions
+
 #self-control reversed scales
 scR <- c("PSC02", "PSC03", "PSC04", "PSC05", "PSC07", "PSC09", "PSC10", 
          "PSC11", "PSC13")
+
 #self_efficacy reversed scales
 seR <- c("PSE02", "PSE04", "PSE05", "PSE06", "PSE07", "PSE10", "PSE11", 
          "PSE12", "PSE16", "PSE17")
+
 #self_respect reversed scales
 srR <- c("PSR02", "PSR05",  "PSR08", "PSR09", "PSR10")
+
 #research_potential reversed scales
 rpR <- c("PRP03", "PRP08", "PRP11", "PRP12", "PRP15", "PRP20", "PRP23", 
          "PRP25", "PRP28", "PRP29", "PRP40", "PRP43", "PRP47", "PRP49")
+
 #big five reversed scales
 bfR <- c("PBF01", "PBF21", "PBF26", "PBF07", "PBF17", "PBF27",
          "PBF03", "PBF08", "PBF28", "PBF14", "PBF19", "PBF24", 
          "PBF05", "PBF10", "PBF20","PBF30")
+
 #growth_minset reversed scales
 gmR <- c("PGM02", "PGM08", "PGM14", "PGM05", "PGM09", "PGM13", "PGM15")
+
 #grit reversed scales 
 gR <- c("PG02", "PG04", "PG06", "PG08", "PG10")
+
 
 #Creating scales and excluding original questions
 
@@ -135,7 +148,3 @@ scaling <-
          SC019, SC020, SC021, SC022, SC023, SC024, SC025, SC026, 
          SC027, SC028, SC029, SC030, SC031, SC032, SC033, SC034)%>%
   write_dta(file.path(outData,"scales.dta"))
-
-
-
-

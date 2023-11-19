@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------
-# Project: Scientific Involvement Index
+# Project: Scientific Involvement Indicator
 # Organization: SFedU Future Skills Research Lab
 # Author: Valeria Egorova
 # Date: 19 Nov 2023
