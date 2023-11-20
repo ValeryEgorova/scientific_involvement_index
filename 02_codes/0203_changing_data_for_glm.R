@@ -25,6 +25,8 @@ var <- c("self_control", "self_efficacy", "educational",
 
 data_for_glm <- 
   data_index%>%
+  replace_with_na(.,
+                  replace = list(grade = c(12,13,17,49,9283737828)))%>%
   mutate(sci_env = rowMeans(select(.,c(SC007, SC006)),
                             na.rm = T),
          dataset = factor(dataset),

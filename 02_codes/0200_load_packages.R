@@ -25,7 +25,8 @@ required_packages <- c("tidyverse",
                        "caret",
                        "e1071",
                        "margins",
-                       "Hmisc")
+                       "Hmisc",
+                       "naniar")
 
 
 # Function to check and install packages

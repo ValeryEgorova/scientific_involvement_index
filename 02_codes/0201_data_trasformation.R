@@ -128,7 +128,8 @@ scaling <-
   mutate(externalism = PLC02a + PLC03a + PLC04a + PLC05a + PLC06a + PLC07a + PLC08a + PLC09a + PLC10a + PLC11a +
            PLC12a + PLC13a + PLC14a + PLC15a + PLC16a + PLC17a + PLC18a + PLC19a + PLC20a + PLC21a +
            PLC22a + PLC23a + PLC24a + PLC25a + PLC26a + PLC27a + PLC28a + PLC29a,
-         AP01 = abs(AP01 - 7))%>%
+         #AP01 = abs(AP01 - 7)
+         )%>%
   #grit
   mutate_at(.vars = gR, .fun = ~ abs(.-6))%>%
   mutate(commitment = PG01 + PG03 + PG05 + PG07 + PG09,
