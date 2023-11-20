@@ -38,7 +38,7 @@ margin
 
 ## Logistic regression version 2 
 
-mod2 <- glm(group2 ~ PI + sci_env + AP01 + AP02 +  sex + grade + sc_type + #ac_ach 
+mod2 <- glm(group2 ~ PI + sci_env + ac_ach + AP02 +  sex + grade + sc_type + # AP01
              research_potential, data = data_for_glm, family = binomial(link="logit"), x=TRUE)
 summary(mod2)
 
