@@ -39,7 +39,7 @@ inputData     <-  file.path(projectFolder, "01_input_data")
 rcodes        <-  file.path(projectFolder, "02_codes")
 outData       <-  file.path(projectFolder, "03_outputs/0301_data")
 outTables     <-  file.path(projectFolder, "03_outputs/0302_tables")  
-outFigures    <-  file.path(projectFolder, "03_outputs/0303_figures")  
+outFigures    <-  file.path(projectFolder, "03_outputs/0303_figures")
 
 
 stopifnot(dir.exists(documentation))
