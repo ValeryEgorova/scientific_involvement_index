@@ -11,14 +11,14 @@
 scales <- read_dta(file.path(outData,"scales.dta"))
 
 data <- 
-  scales%>%
+  scales %>%
   mutate(events = rowMeans(select(.,c(SC009, SC010, SC011, SC012, SC013, SC014, SC015, SC016)),
                            na.rm = T),
          attract = rowMeans(select(.,c(SC026, SC027, SC028, SC029, SC030, SC031)),
                             na.rm = T))
 # PCA
 for_pca <- 
-  data%>%
+  data %>%
   select(events, attract, SC001, SC003, SC004, SC008, SC025, SC033, SC034)
 
 pca <- prcomp(for_pca, center = T,scale. = TRUE)
@@ -38,7 +38,7 @@ table <- as.table(pca$rotation)
 rotation_table <- as.data.frame(pca$rotation)
 
 rotation_table <- 
-  rotation_table%>%
+  rotation_table %>%
   write_xlsx(file.path(outData,"rotation_table.xlsx"))
 
 #Indicator version with the wights for every variable 
@@ -62,11 +62,11 @@ weight_PC2 <- prop_var_explained[2]
 #Including indicators to dataset 
 
 data_index <- 
-  data%>%
+  data %>%
   mutate(index_v2 = weight_PC1 * pca$x[, 1] + weight_PC2 * pca$x[, 2],
          index_v1 = events*0.14 + attract*0.11 + SC001*0.13 + SC003*0.05 + SC004*0.12 + SC008*0.09
          + SC025*0.10 + SC033*0.15 + SC034*0.10,
-         index_v3 = (events + attract + SC001 + SC003 + SC004 + SC008 + SC025 + SC033 + SC034)/ 9)%>%
+         index_v3 = (events + attract + SC001 + SC003 + SC004 + SC008 + SC025 + SC033 + SC034) / 9) %>%
   write_dta(file.path(outData, "data_index.dta"))
 
 
@@ -93,7 +93,7 @@ summary(fit_3)$adj.r.squared
 #Checking correlation between two versions of variables
 
 data_cor <- 
-  data_index%>%
+  data_index %>%
   select(index_v2, index_v1, index_v3)
 
 corr_matrix <- cor(data_cor)

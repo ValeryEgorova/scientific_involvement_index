@@ -17,15 +17,15 @@ USER        <- Sys.getenv("USER")
 
 #version from everyone, the profile works for everyone
 
-if (USERNAME == "kavanesyan"){
+if (USERNAME == "kavanesyan") {
   projectFolder  <- getwd()
 } 
 
-if (USERNAME == "Valery"){
+if (USERNAME == "Valery") {
   projectFolder  <- getwd()
 } 
 
-if (USER == "karavan88"){
+if (USER == "karavan88") {
   projectFolder  <- getwd()
 } 
 

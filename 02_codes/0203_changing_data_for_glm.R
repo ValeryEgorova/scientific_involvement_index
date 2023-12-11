@@ -24,9 +24,9 @@ var <- c("self_control", "self_efficacy", "educational",
 #creating data for logisting regression
 
 data_for_glm <- 
-  data_index%>%
+  data_index %>%
   replace_with_na(.,
-                  replace = list(grade = c(12,13,17,49,9283737828)))%>%
+                  replace = list(grade = c(12,13,17,49,9283737828))) %>%
   mutate(sci_env = rowMeans(select(.,c(SC007, SC006)),
                             na.rm = T),
          dataset = factor(dataset),
@@ -49,8 +49,8 @@ data_for_glm <-
                                        school %in% c("3", "sunz") ~ "uni",
                                        school %in% c("64", "67","77", "83", "01") ~ "gen",
                                        T ~ as.character(NA))),
-         group = ifelse(index_v2 > mean(index_v2), 1,0))%>%
-  mutate_at(.vars = var, .fun = ~ scale(., center = T, scale = T))%>%
+         group = ifelse(index_v2 > mean(index_v2), 1,0)) %>%
+  mutate_at(.vars = var, .fun = ~ scale(., center = T, scale = T)) %>%
   mutate(research_potential = as.numeric(research_potential),
          AP02 = as.numeric(AP02),
          PI = as.numeric(PI),
@@ -60,6 +60,6 @@ data_for_glm <-
                                       AP01 %in% c(4:5) ~ 2, 
                                       AP01 == 6 ~ 3)),
          group2 = ifelse(index_v3 > mean(index_v3),1,0),
-         gender = as.numeric(sex))%>%
+         gender = as.numeric(sex)) %>%
   write_dta(file.path(outData, "data_for_glm.dta"))
 
