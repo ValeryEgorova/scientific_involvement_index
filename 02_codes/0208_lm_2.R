@@ -51,21 +51,3 @@ summary(mod3_1)
 
 margin <- margins(mod3_1)
 margin
-
-#externalism, O, C, N, externalism, A
-
-
-data <- 
-  data_for_glm %>%
-  select(self_control, self_efficacy, educational,
-         communicative, emotional, growth,
-         position, achievment, external, self_respect, motivational, 
-         cognitive, behavioural, research_potential, em_knowledge,
-         em_control, self_mot, empaty, em_identification,
-         O, C, E, A, N, gm_intelligence, gm_personality, 
-         externalism,  commitment, consistency, grit)
-
-corr_matrix <- cor(data)
-p.mat = cor_pmat(data)
-ggcorrplot(corr_matrix, type = "lower",
-           lab = TRUE)
