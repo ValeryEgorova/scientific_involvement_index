@@ -17,7 +17,7 @@ USER        <- Sys.getenv("USER")
 
 #version from everyone, the profile works for everyone
 
-if (USERNAME == "kavanesyan") {
+if (USERNAME == "Админ") {
   projectFolder  <- getwd()
 } 
 
@@ -25,7 +25,7 @@ if (USERNAME == "Valery") {
   projectFolder  <- getwd()
 } 
 
-if (USER == "karavan88") {
+if (USER == "Админ") {
   projectFolder  <- getwd()
 } 
 
@@ -48,3 +48,4 @@ stopifnot(dir.exists(rcodes))
 stopifnot(dir.exists(outData))
 stopifnot(dir.exists(outTables))
 stopifnot(dir.exists(outFigures))
+

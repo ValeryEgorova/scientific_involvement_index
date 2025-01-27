@@ -137,6 +137,11 @@ scaling <-
          grit = commitment + consistency,
   #parential involvement
          PI = rowMeans(select(., c(PI01, PI02, PI03, PI04, PI05)), na.rm = T)) %>%
+  mutate(index = rowMeans(select(., c(SC009, SC010, SC011, SC012, SC013, SC014, SC015, SC016,  SC032, 
+                                      SC033, SC034, SC008)), na.rm = T),
+         jr1 = ifelse(SC001 != 0,1,0),
+         jr2 = ifelse(SC004 %in% c(2,3),1,0),
+         junior_res = ifelse(jr1 == 1 & jr2 == 1 & SC025 == 1, 1, 0)) %>% 
   select(ID, sex, grade, life_sat, AP01, AP02,  self_control, self_efficacy, educational,
          communicative, emotional, growth,
          position, achievment, external, self_respect, motivational, 
@@ -144,8 +149,6 @@ scaling <-
          em_control, self_mot, empaty, em_identification,
          O, C, E, A, N, gm_intelligence, gm_personality, 
          externalism,  commitment, consistency, grit, dataset, PI,
-         creativity,  SC001, SC002, SC003, SC004, SC006, SC007, SC008, SC009, SC010,
-         SC011, SC012, SC013, SC014, SC015, SC016, SC017, SC018,
-         SC019, SC020, SC021, SC022, SC023, SC024, SC025, SC026, 
-         SC027, SC028, SC029, SC030, SC031, SC032, SC033, SC034) %>%
+         creativity,  index, SC007, SC006, junior_res) %>%
   write_dta(file.path(outData,"scales.dta"))
+

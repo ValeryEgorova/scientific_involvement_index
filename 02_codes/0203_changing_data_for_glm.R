@@ -8,7 +8,7 @@
 
 #downloading data
 
-data_index <- read_dta(file.path(outData,"data_index.dta"))
+data_index <- read_dta(file.path(outData,"scales.dta"))
 
 #vector to scale the variables
 
@@ -49,17 +49,17 @@ data_for_glm <-
                                        school %in% c("3", "sunz") ~ "uni",
                                        school %in% c("64", "67","77", "83", "01") ~ "gen",
                                        T ~ as.character(NA))),
-         group = ifelse(index_v2 > mean(index_v2), 1,0)) %>%
+         group = ifelse(index > mean(index), 1,0)) %>%
   mutate_at(.vars = var, .fun = ~ scale(., center = T, scale = T)) %>%
   mutate(research_potential = as.numeric(research_potential),
          AP02 = as.numeric(AP02),
          PI = as.numeric(PI),
          sci_env = as.numeric(sci_env),
          AP01 = as.factor(AP01),
-         ac_ach = as.factor(case_when(AP01 %in% c(1:3) ~ 1,
-                                      AP01 %in% c(4:5) ~ 2, 
-                                      AP01 == 6 ~ 3)),
-         group2 = ifelse(index_v3 > mean(index_v3),1,0),
+         ac_ach = as.factor(case_when(AP01 %in% c(1:3) ~ 1, # ТРОЕЧНИКИ
+                                      AP01 %in% c(4:5) ~ 2, # ХОРОШИСТЫ
+                                      AP01 == 6 ~ 3)), # ОТЛИЧНИКИ
          gender = as.numeric(sex)) %>%
+  filter(grade != 1) %>%
   write_dta(file.path(outData, "data_for_glm.dta"))
 

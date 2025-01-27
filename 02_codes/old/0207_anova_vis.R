@@ -6,16 +6,17 @@
 # Date: 03 Dec 2023
 #-------
 
-B5 <- read_excel(file.path(outTables,"b5.xlsx")) %>%
-  mutate(name = as.factor(name),
+B5 <- read_excel("03_outputs/0301_data/b5.xlsx") %>%
+  mutate(name = factor(name, ordered = T, levels = c("Нейротизм", "Доброжелательность", "Экстраверсия",
+                                                     "Добросовестность", "Открытость новому")),
          group = factor(group))
 
-a <- ggplot(B5, aes(x = name, y = value, fill = group)) +
+ggplot(B5, aes(x = name, y = value, fill = group)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_text(aes(label = signif(round(value, 2))), position = position_dodge(width = 1), vjust = 1, hjust = 0, size = 3.5) +
   theme_bw() +
   coord_flip() +
-  scale_fill_manual(values = c("#8DB6CD", "#1874CD", "#79CDCD") ) +
+  scale_fill_manual(values = c("#24475a", "#f7aa65", "#716e5d") ) +
   xlab("") +
   ylab("Большая пятерка") +
   # scale_fill_manual(values = var)+
@@ -23,18 +24,18 @@ a <- ggplot(B5, aes(x = name, y = value, fill = group)) +
 
 #########################################################
 
-EI <- read_excel(file.path(outTables,"ei.xlsx")) %>%
+EI <- read_excel(("03_outputs/0301_data/ei.xlsx")) %>%
   mutate(name = as.factor(name),
          group = factor(group))
 
-a1 <- ggplot(EI, aes(x = name, y = value, fill = group)) +
+ggplot(EI, aes(x = name, y = value, fill = group)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_text(aes(label = signif(round(value, 2))), position = position_dodge(width = 1), vjust = 1, hjust = 0, size = 3.5) +
   theme_bw() +
   coord_flip() +
   xlab("") +
   ylab("Эмоциональный интеллект") +
-  scale_fill_manual(values = c("#8DB6CD", "#1874CD", "#79CDCD") ) +
+  scale_fill_manual(values = c("#24475a", "#f7aa65", "#716e5d") ) +
   # scale_fill_manual(values = var)+
   theme(legend.title = element_blank())
 
